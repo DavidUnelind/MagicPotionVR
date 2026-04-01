@@ -8,11 +8,12 @@ public class Stream : MonoBehaviour
     private LineRenderer lineRenderer = null;
 
     private Vector3 targetPosition = Vector3.zero;
+    public float widthMultiplier = 1.0f;
 
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.widthMultiplier = 1.0f;
+        lineRenderer.widthMultiplier = widthMultiplier;
     }
 
 
