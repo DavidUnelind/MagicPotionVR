@@ -30,6 +30,8 @@ public class Guest : MonoBehaviour
 
     public void BeingServed()
     {
+        if (served) return;
+        
         served = true;
         target = exitPosition.transform;
         isMoving = true;
