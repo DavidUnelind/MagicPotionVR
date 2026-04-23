@@ -6,6 +6,7 @@ public class Shaker : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Rigidbody shaker;
+    public Guest guest; 
     [SerializeField] public Slider progressBar; 
     public GameObject canvas; 
     private float shakingTime = 0f;
@@ -43,6 +44,13 @@ public class Shaker : MonoBehaviour
         {
             isDoneShaking = true;
             canvas.SetActive(false);
+        }
+
+        if (guest.respawned)
+        {
+            shakingTime = 0f;
+            isDoneShaking = false;
+            progressBar.value = 0f;
         }
     }
 }

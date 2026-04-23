@@ -17,7 +17,7 @@ public class ServeButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("value of served " + servedGuest);
+        
     }
 
     public void OnTriggerEnter(Collider other)

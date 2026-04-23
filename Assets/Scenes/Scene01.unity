@@ -1866,8 +1866,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.45
-  m_Height: 0.7
+  m_Radius: 0.5
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &335284914
@@ -13639,6 +13639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2035da6ecc7e01844a07aa50af9fcaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shaker
+  guest: {fileID: 1751507944}
   progressBar: {fileID: 1965399654}
   canvas: {fileID: 89746187}
   isDoneShaking: 0
@@ -13716,7 +13717,7 @@ Transform:
   m_GameObject: {fileID: 1241006827}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.72, y: 0, z: 1.88031}
+  m_LocalPosition: {x: -9.17, y: 0.1369, z: 1.88031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17598,6 +17599,7 @@ MonoBehaviour:
   speed: 1
   barPosition: {fileID: 1218078463}
   exitPosition: {fileID: 1241006827}
+  respawned: 0
 --- !u!54 &1751507945
 Rigidbody:
   m_ObjectHideFlags: 0
