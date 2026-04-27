@@ -19,11 +19,17 @@ public class Wobble : MonoBehaviour
     float wobbleAmountToAddZ;
     float pulse;
     float time = 0.5f;
+
+    float scaleFactor;
+    float scaledWobble;
     
     // Use this for initialization
     void Start()
     {
         rend = GetComponent<Renderer>();
+
+        scaleFactor = transform.lossyScale.x;
+        scaledWobble = MaxWobble * scaleFactor;
     }
     private void Update()
     {
@@ -47,8 +53,8 @@ public class Wobble : MonoBehaviour
 
 
         // add clamped velocity to wobble
-        wobbleAmountToAddX += Mathf.Clamp((velocity.x + (angularVelocity.z * 0.2f)) * MaxWobble, -MaxWobble, MaxWobble);
-        wobbleAmountToAddZ += Mathf.Clamp((velocity.z + (angularVelocity.x * 0.2f)) * MaxWobble, -MaxWobble, MaxWobble);
+        wobbleAmountToAddX += Mathf.Clamp((velocity.x + (angularVelocity.z * 0.2f)) * scaledWobble, -scaledWobble, scaledWobble);
+        wobbleAmountToAddZ += Mathf.Clamp((velocity.z + (angularVelocity.x * 0.2f)) * scaledWobble, -scaledWobble, scaledWobble);
 
         // keep last position
         lastPos = transform.position;

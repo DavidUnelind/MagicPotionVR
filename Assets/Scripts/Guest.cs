@@ -31,7 +31,7 @@ public class Guest : MonoBehaviour
         target = barPosition.transform;
         isMoving = true;
         respawned = true; 
-        Invoke(nameof(UpdateRespawnVariable), 1f);
+        Invoke(nameof(UpdateRespawnVariable), 0.5f);
     }
 
     void UpdateRespawnVariable()

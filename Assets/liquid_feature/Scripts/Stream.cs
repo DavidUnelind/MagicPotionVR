@@ -9,20 +9,22 @@ public class Stream : MonoBehaviour
 
     private Vector3 targetPosition = Vector3.zero;
     public float widthMultiplier = 1.0f;
+    private float scaleFactor;
 
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.widthMultiplier = widthMultiplier;
-    }
+        scaleFactor = transform.lossyScale.x;
+        lineRenderer.widthMultiplier = widthMultiplier * scaleFactor;
 
+        var main = particles.main;
+        main.startSizeMultiplier = scaleFactor;
+    }
 
     private void Start()
     {
         MoveToPosition(0, transform.position);
         MoveToPosition(1, transform.position);
-        
-        
     }
 
     public void Begin()
@@ -39,10 +41,8 @@ public class Stream : MonoBehaviour
             MoveToPosition(1, targetPosition);
             particles.transform.position = targetPosition;
             
-
             yield return null;    
         }
-        
     }
 
     // shoot a ray downwards to fins endpoint
@@ -51,16 +51,15 @@ public class Stream : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position, Vector3.down);
 
-        Physics.Raycast(ray, out hit, 10.0f);
-        Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(10.0f);
-//
+        float value = 10.0f * scaleFactor;
+        Physics.Raycast(ray, out hit, value);
+        Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(value);
+
         return endPoint;
-        //
     }
 
     private void MoveToPosition(int index, Vector3 targetPosition)
     {
         lineRenderer.SetPosition(index, targetPosition);
-        
     }
 }

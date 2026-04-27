@@ -7,14 +7,11 @@ public class Tilt_detection : MonoBehaviour
     [SerializeField] private Transform pourPoint;
     [SerializeField] private GameObject streamObject;
 
-
-
     // Detta gör så att variabler syns i inspektorn
     [Header("Tilt Settings")]
     [SerializeField] private float pourThreshold = 0;
 
     
-
     private bool isPouring;
     private Stream currentStream = null;
     
@@ -24,6 +21,7 @@ public class Tilt_detection : MonoBehaviour
         if (bottle == null)
             bottle = transform;
         streamObject = Instantiate(streamObject,pourPoint.position, Quaternion.identity, transform );
+        streamObject.transform.localScale = Vector3.one;
         currentStream = streamObject.GetComponent<Stream>();
         streamObject.SetActive(false);
     }
@@ -34,9 +32,7 @@ public class Tilt_detection : MonoBehaviour
         float uprightDot = Vector3.Dot(bottle.up, Vector3.up);
         bool shouldPour = uprightDot < pourThreshold;
 
-
         //Debug.Log($"uprightDot: {uprightDot}, shouldPour: {shouldPour}");
-   
 
         if (shouldPour != isPouring)
         {
@@ -45,7 +41,6 @@ public class Tilt_detection : MonoBehaviour
 
         if(isPouring )
         {
-            //Debug.Log($"Current Stream: {currentStream}");
             StartPour();
         }
         else
@@ -53,7 +48,6 @@ public class Tilt_detection : MonoBehaviour
             EndPour();
         }
     }
-
 
     private void StartPour()
     {
@@ -67,9 +61,5 @@ public class Tilt_detection : MonoBehaviour
         Debug.Log("POURING STOPPED");
         //streamObject = null;
         streamObject.SetActive(false);
-        
     }
-
-
-   
 }
