@@ -6477,7 +6477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3612e6f376dd07d4fb140d2d9169f40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wobble
-  MaxWobble: 1
+  MaxWobble: 0.1
   WobbleSpeed: 1
   Recovery: 1
 --- !u!23 &827916938
@@ -6505,7 +6505,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 98cd8c57f66ebfc4b8e6fdda22b38ea8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15613,43 +15613,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.96695626
+      value: -0.9753963
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1524937
+      value: 2.1526523
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.2513415
+      value: 1.2513463
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70764446
+      value: 0.7063113
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0064429473
+      value: -0.043893334
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70587724
+      value: -0.7065064
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.030580271
+      value: -0.006828477
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 361.951
+      value: 355.891
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -449.806
+      value: -450.124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 3.004
+      value: 3.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dc6b2e215188244ea59093481693fad, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -16829,7 +16829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3612e6f376dd07d4fb140d2d9169f40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wobble
-  MaxWobble: 1
+  MaxWobble: 0.1
   WobbleSpeed: 1
   Recovery: 1
 --- !u!1 &1630782817

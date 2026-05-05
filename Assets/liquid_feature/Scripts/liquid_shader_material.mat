@@ -38,11 +38,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fill: 0.911
+    - _Fill: 0.309
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WobbleX: 0
-    - _WobbleZ: 0
+    - _WobbleX: 0.01
+    - _WobbleZ: 0.01
     - _XRMotionVectorsPass: 1
     m_Colors:
     - _SideColor: {r: 0.6278448, g: 0.04672479, b: 0.6603774, a: 1}

@@ -37,15 +37,10 @@ public class Tilt_detection : MonoBehaviour
         if (shouldPour != isPouring)
         {
             isPouring = shouldPour;
-        }
-
-        if(isPouring )
-        {
-            StartPour();
-        }
-        else
-        {
-            EndPour();
+            if (isPouring)
+                StartPour();
+            else
+                EndPour();
         }
     }
 
