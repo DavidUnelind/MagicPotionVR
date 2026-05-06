@@ -51,7 +51,7 @@ public class Stream : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position, Vector3.down);
 
-        float value = 10.0f * scaleFactor;
+        float value = 100.0f * scaleFactor;
         Physics.Raycast(ray, out hit, value);
         Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(value);
 
