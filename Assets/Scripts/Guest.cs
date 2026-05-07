@@ -85,6 +85,8 @@ public class Guest : MonoBehaviour
         queueIndex = index;
         isMoving = true;
 
+        Debug.Log($"{gameObject.name} is now number {queueIndex} in queue");
+
         //animator.SetBool("AtBar", index == 0);
     }
 }
