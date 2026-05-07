@@ -30,7 +30,7 @@ public class Shaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, startPosition) > 1.0f)
+        /*if (Vector3.Distance(transform.position, startPosition) > 1.0f)
         {
             shaker.linearVelocity = Vector3.zero;
             shaker.angularVelocity = Vector3.zero;
@@ -40,13 +40,14 @@ public class Shaker : MonoBehaviour
                 startPosition,
                 2.0f * Time.deltaTime
             );
-        }
+        }*/
 
         float speed = (transform.position - lastPos).magnitude / Time.deltaTime;
         lastPos = transform.position;
 
         if (speed > shakingIntensity)
         {
+            canvas.SetActive(true);
             shakingTime += Time.deltaTime;
         } else
         {
