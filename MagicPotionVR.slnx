@@ -1,4 +1,10 @@
 ﻿<Solution>
+  <Project Path="Unity.XR.Hands.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Unity.XR.Hands.Analytics.Editor.csproj" />
+  <Project Path="Unity.XR.Hands.Tests.csproj" />
+  <Project Path="Unity.XR.Hands.Editor.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Unity.XR.Hands.Editor.Tests.csproj" />
+  <Project Path="Unity.XR.Hands.Analytics.Hooks.Editor.csproj" />
 </Solution>

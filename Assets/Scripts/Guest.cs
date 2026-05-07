@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEngine;
 
 public class Guest : MonoBehaviour
@@ -15,6 +16,11 @@ public class Guest : MonoBehaviour
 
     private float delay = 0f; 
 
+    private int queueIndex = 0;
+
+    Animator animator; 
+    
+
     void Start()
     {
         startPosition = transform.position;
@@ -22,6 +28,8 @@ public class Guest : MonoBehaviour
         target = barPosition.transform;
         delay = Random.Range(0f, 10f); 
         Debug.Log("delay: " + delay);
+        animator = GetComponent<Animator>();
+        BarQueueManager.Instance.JoinQueue(this);
     }
 
     void Respawn()
@@ -51,9 +59,10 @@ public class Guest : MonoBehaviour
         
         transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * speed);
 
-        if (Vector3.Distance(transform.position, target.position) < 0.1f)
+        if (Vector3.Distance(transform.position, target.position) < 1.0f)
         {
             isMoving = false;
+            animator.SetBool("AtBar", true); 
         }
     }
 
@@ -62,7 +71,20 @@ public class Guest : MonoBehaviour
         if (served) return;
 
         served = true;
+
+        BarQueueManager.Instance.LeaveQueue(this);
+
         target = exitPosition.transform;
         isMoving = true;
+        animator.SetBool("AtBar", false); 
+    }
+
+    public void AssignSlot(Transform slot, int index)
+    {
+        target = slot;
+        queueIndex = index;
+        isMoving = true;
+
+        //animator.SetBool("AtBar", index == 0);
     }
 }
