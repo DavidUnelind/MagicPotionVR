@@ -100,3 +100,4 @@ InitTestScene*.unity*
 
 # Stuff we've added ourselves
 .vscode/settings.json
+Assets/_Recovery/

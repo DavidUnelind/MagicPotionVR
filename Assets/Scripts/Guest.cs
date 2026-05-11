@@ -1,82 +1,82 @@
-using System.Reflection;
 using UnityEngine;
 
 public class Guest : MonoBehaviour
 {
-    private Rigidbody rigidbody;
-    [SerializeField] public float speed = 0.0f;
-    private Vector3 startPosition;
-    [SerializeField] public GameObject barPosition;
-    [SerializeField] public GameObject exitPosition;
+    private Rigidbody rb;          
+    private Animator animator;
+
+    [SerializeField] public float speed = 3.0f;
+
+    private Transform exitPosition;
     private Transform target;
     private bool served = false;
-    private bool isMoving = true;
-
-    public bool respawned = false; 
-
-    private float delay = 0f; 
-
+    private bool isMoving = false;  
     private int queueIndex = 0;
 
-    Animator animator; 
-    
+    private bool initialized = false;
+
+    public void Init(Transform exit)
+    {
+        exitPosition = exit;
+        initialized = true;
+    }
 
     void Start()
     {
-        startPosition = transform.position;
-        rigidbody = GetComponent<Rigidbody>();
-        target = barPosition.transform;
-        delay = Random.Range(0f, 10f); 
-        Debug.Log("delay: " + delay);
+        Debug.Log($"[Guest] Spawned: {gameObject.name}");
+
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+
+        if (!initialized)
+        {
+            Debug.LogError("[Guest] Init() was never called before Start()!");
+            return;
+        }
+
+        if (BarQueueManager.Instance == null)
+        {
+            Debug.LogError("[Guest] No QueueManager in scene!");
+            return;
+        }
+
         BarQueueManager.Instance.JoinQueue(this);
-    }
-
-    void Respawn()
-    {
-        transform.position = startPosition;
-        served = false;
-        target = barPosition.transform;
-        isMoving = true;
-        respawned = true; 
-        Invoke(nameof(UpdateRespawnVariable), 0.5f);
-    }
-
-    void UpdateRespawnVariable()
-    {
-        respawned = false; 
+        Debug.Log("[Guest] Joined queue");
     }
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, exitPosition.transform.position) < 0.5f)
+        if (target == null || !isMoving) return;
+
+        Vector3 newPos = Vector3.MoveTowards(
+            transform.position,
+            target.position,
+            Time.deltaTime * speed
+        );
+        transform.position = newPos;
+
+        Vector3 dir = (target.position - transform.position);
+        dir.y = 0;
+        if (dir.sqrMagnitude > 0.001f)
+            transform.rotation = Quaternion.LookRotation(dir);
+
+        if (exitPosition != null &&
+            Vector3.Distance(transform.position, exitPosition.position) < 0.5f)
         {
-            isMoving = false; 
-            Invoke(nameof(Respawn), delay);
+            GuestSpawner.Instance.TrySpawnGuest();
+            Destroy(gameObject);
+            return;
         }
-
-        if (!isMoving) return;
-        
-        transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * speed);
-
-        if (Vector3.Distance(transform.position, target.position) < 1.0f)
+        if (Vector3.Distance(transform.position, target.position) < 0.1f)
         {
             isMoving = false;
-            animator.SetBool("AtBar", true); 
+            animator?.SetBool("AtBar", true);
         }
-    }
-
-    public void BeingServed()
-    {
-        if (served) return;
-
-        served = true;
-
-        BarQueueManager.Instance.LeaveQueue(this);
-
-        target = exitPosition.transform;
-        isMoving = true;
-        animator.SetBool("AtBar", false); 
     }
 
     public void AssignSlot(Transform slot, int index)
@@ -85,8 +85,21 @@ public class Guest : MonoBehaviour
         queueIndex = index;
         isMoving = true;
 
-        Debug.Log($"{gameObject.name} is now number {queueIndex} in queue");
+        Debug.Log($"{gameObject.name} assigned to slot {queueIndex}");
+        animator?.SetBool("AtBar", false);
+    }
 
-        //animator.SetBool("AtBar", index == 0);
+    public void BeingServed()
+    {
+        if (served) return;
+
+        served = true;
+        BarQueueManager.Instance.LeaveQueue(this);
+
+        target = exitPosition;
+        Debug.Log($"{exitPosition.position} is pos");
+        isMoving = true;
+
+        animator?.SetBool("AtBar", false);
     }
 }

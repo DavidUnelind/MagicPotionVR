@@ -1,0 +1,3 @@
+Fixa att gäster måste till baren
+Fixa maxdistance för objekten
+Fixa teleportation för flaskan

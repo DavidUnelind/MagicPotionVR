@@ -20,9 +20,11 @@ public class Teleportation : MonoBehaviour
     {
         if (isTeleporting) return;
 
-        float distance = Vector3.Distance(startPosition, transform.position);
+        //float distance = Vector3.Distance(startPosition, transform.position);
 
-        if (distance >= maxDistance)
+        float distanceY = Mathf.Abs(startPosition.y - transform.position.y);
+
+        if (distanceY >= maxDistance)
         {
             StartCoroutine(Teleport());
         }
@@ -45,7 +47,7 @@ public class Teleportation : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        Destroy(Obj.gameObject, Obj.main.duration / 2);
+        Destroy(Obj.gameObject, Obj.main.duration / 2.1f);
         GetComponent<Renderer>().enabled = true;
 
         isTeleporting = false;
