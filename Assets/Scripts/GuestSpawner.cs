@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GuestSpawner : MonoBehaviour
@@ -39,40 +40,19 @@ public class GuestSpawner : MonoBehaviour
             return;
         }
 
-        /*if (guestPrefabs == null || guestPrefabs.Length == 0)
-        {
-            return;
-        }
-
-        if (spawnPoint == null)
-        {
-            return;
-        }
-
-        if (exitPoint == null)
-        {
-            return;
-        } */
-
-        FillQueueAtStart();
+        StartCoroutine(FillQueueAtStart());
     }
 
-    void FillQueueAtStart()
+   IEnumerator FillQueueAtStart()
     {
-        /*
-        if (BarQueueManager.Instance == null)
-            return;*/
-
-        if (BarQueueManager.Instance.queueSlots == null || BarQueueManager.Instance.queueSlots.Length == 0)
-        {
-            return;
-        }
-
         int slotCount = BarQueueManager.Instance.queueSlots.Length;
 
         for (int i = 0; i < slotCount; i++)
         {
             SpawnGuest();
+
+            // delay between spawns
+            yield return new WaitForSeconds(2f);
         }
     }
 
@@ -83,18 +63,11 @@ public class GuestSpawner : MonoBehaviour
             return;
         }
 
-        /*if (!BarQueueManager.Instance.HasFreeSlot())
-            return;*/
-
         SpawnGuest();
     }
 
     void SpawnGuest()
     {
-        /*if (guestPrefabs == null || guestPrefabs.Length == 0 || spawnPoint == null)
-        {
-            return;
-        }*/
 
         int randomIndex = Random.Range(0, guestPrefabs.Length);
 

@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5193713421414071893}
   m_Layer: 0
   m_Name: Golem_Core
-  m_TagString: Untagged
+  m_TagString: Guest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 9774996b255107849903b9e696a88a1c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   - {fileID: 9137032837993464747, guid: a7c9346ce0bb7f447840030c9a6d22d7, type: 3}
   - {fileID: 9137032837993464747, guid: dd8ca7a00e9538e438954a0f87d6a1dc, type: 3}
   - {fileID: 9137032837993464747, guid: 8c70aad92cb176542ad15305268346dd, type: 3}
-  visualsParent: {fileID: 0}
+  visualsParent: {fileID: 8097123282825996337}
 --- !u!65 &6891001042886127217
 BoxCollider:
   m_ObjectHideFlags: 0

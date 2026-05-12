@@ -3,33 +3,44 @@ using System.Collections.Generic;
 
 public class CharacterSkinRandomizer : MonoBehaviour
 {
-    [Header("Skin Prefabs")]
     public List<GameObject> skinPrefabs;
-
-    [Header("Where skins spawn")]
     public Transform visualsParent;
 
-    private GameObject currentSkin;
+    private Animator rootAnimator;
 
     void Awake()
     {
+        rootAnimator = GetComponent<Animator>();
+
         RandomizeSkin();
     }
 
     void RandomizeSkin()
     {
-        if (skinPrefabs == null || skinPrefabs.Count == 0)
-            return;
-
         int randomIndex = Random.Range(0, skinPrefabs.Count);
 
-        currentSkin = Instantiate(
+        GameObject skin = Instantiate(
             skinPrefabs[randomIndex],
             visualsParent
         );
 
-        currentSkin.transform.localPosition = Vector3.zero;
-        currentSkin.transform.localRotation = Quaternion.identity;
-        currentSkin.transform.localScale = Vector3.one;
+        skin.transform.localPosition = Vector3.zero;
+        skin.transform.localRotation = Quaternion.identity;
+        skin.transform.localScale = Vector3.one;
+
+        Animator skinAnimator = skin.GetComponent<Animator>();
+
+        if (skinAnimator == null)
+            return;
+
+        // humanoid case
+        if (skinAnimator != null &&skinAnimator.avatar != null)
+        {
+            rootAnimator.avatar = skinAnimator.avatar;
+            rootAnimator.Rebind();
+            rootAnimator.Update(0f);
+            skinAnimator.enabled = false;
+        }
+
     }
 }

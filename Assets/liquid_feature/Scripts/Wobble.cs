@@ -22,6 +22,14 @@ public class Wobble : MonoBehaviour
 
     float scaleFactor;
     float scaledWobble;
+
+
+    // fill settings
+
+    public bool isDraining = false;
+    private float startDrainRate = 0.2f;
+    public float drainRate = 0.2f;
+    public float fillLevel = 0.2f;
     
     // Use this for initialization
     void Start()
@@ -30,6 +38,8 @@ public class Wobble : MonoBehaviour
 
         scaleFactor = transform.lossyScale.x;
         scaledWobble = MaxWobble * scaleFactor;
+
+        rend.material.SetFloat("_Fill", fillLevel);
     }
     private void Update()
     {
@@ -59,6 +69,15 @@ public class Wobble : MonoBehaviour
         // keep last position
         lastPos = transform.position;
         lastRot = transform.rotation.eulerAngles;
+
+
+        // empty bottle
+        if (isDraining && fillLevel > -0.5f)
+        {
+            //drainRate += 0.1f;
+            fillLevel = Mathf.Clamp(fillLevel - drainRate * Time.deltaTime, -0.5f, 1f);
+            rend.material.SetFloat("_Fill", fillLevel);
+        } 
     }
 
 
