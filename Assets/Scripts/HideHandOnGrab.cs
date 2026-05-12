@@ -1,5 +1,6 @@
 /*using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
 
 public class HideHandOnGrab : MonoBehaviour
 {
@@ -13,14 +14,47 @@ public class HideHandOnGrab : MonoBehaviour
         grabInteractable.selectExited.AddListener(ShowHand);
     }
 
-    void HideHand(SelectedEnterEventArgs args)
+    void HideHand(SelectEnterEventArgs args)
     {
         handModel.SetActive(false);
     }
 
-    void ShowHand(SelectedExitEventArgs args)
+    void ShowHand(SelectExitEventArgs args)
     {
         handModel.SetActive(true);
     }
 }
-*/
+
+{
+    private OVRHandGrabInteractable handGrabInteractable;
+    private GameObject handVisuals;
+
+    void Awake()
+    {
+        handGrabInteractable = GetComponent<OVRHandGrabInteractable>();
+        handVisuals = GameObject.Find("HandVisuals");
+    }
+
+    void OnEnable()
+    {
+        handGrabInteractable.GrabBegin += OnGrabBegin;
+        handGrabInteractable.GrabEnd += OnGrabEnd;
+    }
+
+    void OnDisable()
+    {
+        handGrabInteractable.GrabBegin -= OnGrabBegin;
+        handGrabInteractable.GrabEnd -= OnGrabEnd;
+    }
+
+    void OnGrabBegin()
+    {
+        handVisuals.SetActive(false);
+    }
+
+    void OnGrabEnd()
+    {
+        handVisuals.SetActive(true);
+    }
+}*/
+ 

@@ -12,6 +12,7 @@ public class GuestSpawner : MonoBehaviour
 
     [Header("Exit Point")]
     public Transform exitPoint;
+    public Recipe recipe; 
 
     private void Awake()
     {
@@ -111,7 +112,7 @@ public class GuestSpawner : MonoBehaviour
             return;
         }
 
-        guest.Init(exitPoint);
+        guest.Init(exitPoint, recipe);
     }
 }
 

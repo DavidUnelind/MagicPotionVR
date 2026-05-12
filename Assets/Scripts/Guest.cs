@@ -15,11 +15,14 @@ public class Guest : MonoBehaviour
 
     private bool initialized = false;
 
+    public Recipe recipe; 
+
     public bool isAtBar => animator != null && animator.GetBool("AtBar");
 
-    public void Init(Transform exit)
+    public void Init(Transform exit, Recipe newRecipe)
     {
         exitPosition = exit;
+        recipe = newRecipe;
         initialized = true;
     }
 
@@ -78,6 +81,10 @@ public class Guest : MonoBehaviour
         {
             isMoving = false;
             animator?.SetBool("AtBar", true);
+            if (queueIndex == 0)
+            {
+                recipe.newGuest();
+            }
         }
     }
 
@@ -96,6 +103,7 @@ public class Guest : MonoBehaviour
         if (served) return;
 
         served = true;
+        recipe.guestDone(); 
         BarQueueManager.Instance.LeaveQueue(this);
 
         target = exitPosition;
