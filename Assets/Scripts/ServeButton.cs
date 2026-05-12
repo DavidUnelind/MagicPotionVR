@@ -19,7 +19,7 @@ public class ServeButton : MonoBehaviour
         {
             servedGuest = true;
             Guest guest = barQueueManager.GetFirstInQueue();
-            if (guest != null)
+            if (guest != null && guest.isAtBar)
             {
                 guest.BeingServed();
             }

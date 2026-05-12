@@ -701,7 +701,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4b4520f8acdca9747970254c78c0606b, type: 2}
+  - {fileID: 2100000, guid: 85f5397140970ff4e891a15723356a10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -891,7 +891,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4b4520f8acdca9747970254c78c0606b, type: 2}
+  - {fileID: 2100000, guid: 85f5397140970ff4e891a15723356a10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1800,7 +1800,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4b4520f8acdca9747970254c78c0606b, type: 2}
+  - {fileID: 2100000, guid: 85f5397140970ff4e891a15723356a10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2101,7 +2101,7 @@ GameObject:
   - component: {fileID: 8468617057500289297}
   - component: {fileID: 2550935751187727211}
   m_Layer: 0
-  m_Name: URP - Giant01 - Golem
+  m_Name: URP - Giant04 - Golem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

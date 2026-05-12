@@ -15,6 +15,8 @@ public class Guest : MonoBehaviour
 
     private bool initialized = false;
 
+    public bool isAtBar => animator != null && animator.GetBool("AtBar");
+
     public void Init(Transform exit)
     {
         exitPosition = exit;
