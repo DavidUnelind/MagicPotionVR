@@ -1554,8 +1554,8 @@
     "m_ObjectId": "70a66dada47d46e8a359ebd1b1d44747",
     "m_Title": "WOBBLE",
     "m_Position": {
-        "x": -3568.999755859375,
-        "y": -704.9999389648438
+        "x": -3569.0,
+        "y": -705.0
     }
 }
 
@@ -1618,12 +1618,12 @@
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
-    "m_Value": 0.8799999952316284,
+    "m_Value": 0.30000001192092898,
     "m_FloatType": 1,
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
+        "x": -0.5,
+        "y": 0.30000001192092898
     },
     "m_SliderType": 0,
     "m_SliderPower": 3.0,
@@ -1818,7 +1818,7 @@
     "m_ObjectId": "828a9c46dc8a4e759227f238a7b131ab",
     "m_Title": "Perpendicular liquid",
     "m_Position": {
-        "x": -3401.999755859375,
+        "x": -3402.0,
         "y": 342.0
     }
 }
@@ -3334,10 +3334,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1356.9998779296875,
-            "y": 459.9999694824219,
-            "width": 89.9998779296875,
-            "height": 33.999969482421878
+            "x": -1359.9998779296875,
+            "y": 460.0,
+            "width": 89.5,
+            "height": 33.99993896484375
         }
     },
     "m_Slots": [
