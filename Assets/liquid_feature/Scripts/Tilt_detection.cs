@@ -6,6 +6,7 @@ public class Tilt_detection : MonoBehaviour
     [SerializeField] private Transform bottle;
     [SerializeField] private Transform pourPoint;
     [SerializeField] private GameObject streamObject;
+    [SerializeField] private Wobble bottleLiquid;
 
     // Detta gör så att variabler syns i inspektorn
     [Header("Tilt Settings")]
@@ -13,6 +14,7 @@ public class Tilt_detection : MonoBehaviour
 
     
     private bool isPouring;
+
     private Stream currentStream = null;
     
 
@@ -30,7 +32,8 @@ public class Tilt_detection : MonoBehaviour
     {
         // 1 = helt upprätt, 0 = ungefär 90 graders tilt, < 0 = upp och ner
         float uprightDot = Vector3.Dot(bottle.up, Vector3.up);
-        bool shouldPour = uprightDot < pourThreshold;
+        bool isEmpty = bottleLiquid != null && bottleLiquid.fillLevel <= -0.5f;
+        bool shouldPour = uprightDot < pourThreshold && !isEmpty;
 
         //Debug.Log($"uprightDot: {uprightDot}, shouldPour: {shouldPour}");
 
@@ -49,6 +52,7 @@ public class Tilt_detection : MonoBehaviour
         Debug.Log("POURING STARTED");
         streamObject.SetActive(true);
         currentStream.Begin();
+        if (bottleLiquid) bottleLiquid.isDraining = true;
     }
 
     private void EndPour()
@@ -56,5 +60,6 @@ public class Tilt_detection : MonoBehaviour
         Debug.Log("POURING STOPPED");
         //streamObject = null;
         streamObject.SetActive(false);
+        if (bottleLiquid) bottleLiquid.isDraining = false;
     }
 }
