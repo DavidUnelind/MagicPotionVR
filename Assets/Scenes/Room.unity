@@ -6501,9 +6501,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuestSpawner
   guestPrefabs:
+  - {fileID: 5956718948735798486, guid: 30bc76bbce1466347a79366a36469a04, type: 3}
+  - {fileID: 1425358548926745887, guid: ebe23e728c29b76419de5b612936ef45, type: 3}
   - {fileID: 5683271759489286196, guid: 9c917564c96a5934d9b23f3550aad76e, type: 3}
-  - {fileID: 8972580340271559796, guid: cd6fc053a0fce9042a0d90d0aecb80af, type: 3}
-  - {fileID: 3561058238221095600, guid: e9c25eba4f1ebe94ba48e609f285d4f8, type: 3}
   spawnPoint: {fileID: 2115022872}
   exitPoint: {fileID: 820214656}
 --- !u!4 &266239055
