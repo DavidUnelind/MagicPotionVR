@@ -13683,7 +13683,7 @@ GameObject:
   - component: {fileID: 710254793}
   - component: {fileID: 710254794}
   m_Layer: 0
-  m_Name: magicpotion3
+  m_Name: magicPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13754,6 +13754,7 @@ MonoBehaviour:
   bottle: {fileID: 710254792}
   pourPoint: {fileID: 2026137365}
   streamObject: {fileID: 5238570228697279498, guid: 0f7be840e58395d4296f67c34fc37aa3, type: 3}
+  bottleLiquid: {fileID: 1387082186}
   bottleLiquid: {fileID: 0}
   pourThreshold: -0.5
 --- !u!4 &710254792
@@ -24946,7 +24947,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 98cd8c57f66ebfc4b8e6fdda22b38ea8, type: 2}
+  - {fileID: 2100000, guid: 18763ad54cf721743910b0d6d29b3eea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
