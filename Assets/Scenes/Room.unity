@@ -2459,6 +2459,7 @@ GameObject:
   - component: {fileID: 110412421}
   - component: {fileID: 110412424}
   - component: {fileID: 110412423}
+  - component: {fileID: 110412429}
   m_Layer: 0
   m_Name: Shaker
   m_TagString: Untagged
@@ -2475,7 +2476,7 @@ Transform:
   m_GameObject: {fileID: 110412418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.632, y: 1.015, z: 0.716}
+  m_LocalPosition: {x: -0.632, y: 1.148, z: 0.716}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2622,7 +2623,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -2691,6 +2692,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+--- !u!65 &110412429
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110412418}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.9999999, z: 1.0000001}
+  m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940696}
 --- !u!1 &113485409
 GameObject:
   m_ObjectHideFlags: 0
@@ -6507,6 +6529,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 2115022872}
   exitPoint: {fileID: 820214656}
   recipe: {fileID: 1255564022}
+  leftDoor: {fileID: 1830177966}
+  rightDoor: {fileID: 2048418293}
 --- !u!4 &266239055
 Transform:
   m_ObjectHideFlags: 0
@@ -13730,6 +13754,7 @@ MonoBehaviour:
   bottle: {fileID: 710254792}
   pourPoint: {fileID: 2026137365}
   streamObject: {fileID: 5238570228697279498, guid: 0f7be840e58395d4296f67c34fc37aa3, type: 3}
+  bottleLiquid: {fileID: 0}
   pourThreshold: -0.5
 --- !u!4 &710254792
 Transform:
@@ -13740,7 +13765,7 @@ Transform:
   m_GameObject: {fileID: 710254787}
   serializedVersion: 2
   m_LocalRotation: {x: -0.011624948, y: -0.96747303, z: 0.0498889, w: 0.24773374}
-  m_LocalPosition: {x: -0.1771, y: 1.0511, z: -5.2531}
+  m_LocalPosition: {x: -0.177, y: 1.129, z: -5.261}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -14563,6 +14588,7 @@ GameObject:
   - component: {fileID: 746797408}
   - component: {fileID: 746797409}
   - component: {fileID: 746797413}
+  - component: {fileID: 746797414}
   m_Layer: 0
   m_Name: Bottle1
   m_TagString: Untagged
@@ -14579,7 +14605,7 @@ Transform:
   m_GameObject: {fileID: 746797406}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.787, y: 1.023, z: 0.731}
+  m_LocalPosition: {x: 0.787, y: 1.216, z: 0.731}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14662,7 +14688,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -14731,6 +14757,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleportation
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+--- !u!65 &746797414
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746797406}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1001 &753729651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17172,7 +17219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7516989854395125638, guid: d2d6934a666a18d46b8b7a3864dc9f63, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7235
+      value: 0.892
       objectReference: {fileID: 0}
     - target: {fileID: 7516989854395125638, guid: d2d6934a666a18d46b8b7a3864dc9f63, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24871,6 +24918,9 @@ MonoBehaviour:
   MaxWobble: 0.1
   WobbleSpeed: 1
   Recovery: 1
+  isDraining: 0
+  drainRate: 0.2
+  fillLevel: 0.2
 --- !u!23 &1387082187
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31487,6 +31537,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 371809253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1830177966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6322556187633357650, guid: f5e4cf5af47ee60418f92554c028a4ce, type: 3}
+  m_PrefabInstance: {fileID: 1129075768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1836155182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35229,6 +35284,11 @@ Transform:
   - {fileID: 516660691}
   m_Father: {fileID: 1455926806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2048418293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7750370834963051906, guid: b7ed1f58ec447ad4fb0c93a62eb4c4b6, type: 3}
+  m_PrefabInstance: {fileID: 1570382668}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2048712677
 PrefabInstance:
   m_ObjectHideFlags: 0

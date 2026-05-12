@@ -14,6 +14,14 @@ public class GuestSpawner : MonoBehaviour
     [Header("Exit Point")]
     public Transform exitPoint;
     public Recipe recipe; 
+    public GameObject leftDoor; 
+    public GameObject rightDoor; 
+    private Quaternion leftDoorClosed; 
+    private Quaternion rightDoorClosed;  
+    private Quaternion leftDoorOpen; 
+    private Quaternion rightDoorOpen; 
+
+    private bool isOpen = false; 
 
     private void Awake()
     {
@@ -28,6 +36,11 @@ public class GuestSpawner : MonoBehaviour
 
     private void Start()
     {
+        leftDoorClosed = leftDoor.transform.rotation; 
+        rightDoorClosed = rightDoor.transform.rotation; 
+
+        leftDoorOpen = Quaternion.Euler(0, 75, 0) * leftDoor.transform.rotation; 
+        rightDoorOpen = Quaternion.Euler(0, -75, 0) * rightDoor.transform.rotation; 
 
         if (BarQueueManager.Instance == null 
             || guestPrefabs == null 
@@ -76,6 +89,12 @@ public class GuestSpawner : MonoBehaviour
             spawnPoint.position,
             Quaternion.identity
         );
+
+        leftDoor.transform.rotation = Quaternion.Slerp(leftDoor.transform.rotation, leftDoorOpen, 2 * Time.deltaTime);
+        rightDoor.transform.rotation = Quaternion.Slerp(rightDoor.transform.rotation, rightDoorOpen, 2 * Time.deltaTime);
+
+        //leftDoor.transform.rotation = Quaternion.Slerp(leftDoor.transform.rotation, leftDoorClosed, 2 * Time.deltaTime);
+        //rightDoor.transform.rotation = Quaternion.Slerp(rightDoor.transform.rotation, rightDoorClosed, 2 * Time.deltaTime);
 
         Guest guest = guestObject.GetComponent<Guest>() ?? guestObject.GetComponentInChildren<Guest>();
 
