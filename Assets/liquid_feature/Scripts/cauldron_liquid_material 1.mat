@@ -53,11 +53,14 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _amplitud: 0.1
-    - _frequencyX: 20
-    - _frequencyY: 20
+    - _amplitud: 0.015
+    - _amplitudCoeff: 0.015
+    - _frequencyX: 8
+    - _frequencyY: 8
     - _speed: 1
     m_Colors:
     - _color: {r: 0.42019206, g: 1, b: 0, a: 1}
+    - _colorBottom: {r: 0.07155575, g: 0.509434, b: 0.016820943, a: 1}
+    - _colorPeak: {r: 0.35169482, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
