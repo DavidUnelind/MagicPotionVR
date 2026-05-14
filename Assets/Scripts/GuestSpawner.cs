@@ -14,14 +14,6 @@ public class GuestSpawner : MonoBehaviour
     [Header("Exit Point")]
     public Transform exitPoint;
     public Recipe recipe; 
-    public GameObject leftDoor; 
-    public GameObject rightDoor; 
-    private Quaternion leftDoorClosed; 
-    private Quaternion rightDoorClosed;  
-    private Quaternion leftDoorOpen; 
-    private Quaternion rightDoorOpen; 
-
-    private bool isOpen = false; 
 
     private void Awake()
     {
@@ -36,12 +28,6 @@ public class GuestSpawner : MonoBehaviour
 
     private void Start()
     {
-        leftDoorClosed = leftDoor.transform.rotation; 
-        rightDoorClosed = rightDoor.transform.rotation; 
-
-        leftDoorOpen = Quaternion.Euler(0, 75, 0) * leftDoor.transform.rotation; 
-        rightDoorOpen = Quaternion.Euler(0, -75, 0) * rightDoor.transform.rotation; 
-
         if (BarQueueManager.Instance == null 
             || guestPrefabs == null 
             || guestPrefabs.Length == 0
@@ -56,7 +42,7 @@ public class GuestSpawner : MonoBehaviour
         StartCoroutine(FillQueueAtStart());
     }
 
-   IEnumerator FillQueueAtStart()
+    IEnumerator FillQueueAtStart()
     {
         int slotCount = BarQueueManager.Instance.queueSlots.Length;
 
@@ -90,12 +76,6 @@ public class GuestSpawner : MonoBehaviour
             Quaternion.identity
         );
 
-        leftDoor.transform.rotation = Quaternion.Slerp(leftDoor.transform.rotation, leftDoorOpen, 2 * Time.deltaTime);
-        rightDoor.transform.rotation = Quaternion.Slerp(rightDoor.transform.rotation, rightDoorOpen, 2 * Time.deltaTime);
-
-        //leftDoor.transform.rotation = Quaternion.Slerp(leftDoor.transform.rotation, leftDoorClosed, 2 * Time.deltaTime);
-        //rightDoor.transform.rotation = Quaternion.Slerp(rightDoor.transform.rotation, rightDoorClosed, 2 * Time.deltaTime);
-
         Guest guest = guestObject.GetComponent<Guest>() ?? guestObject.GetComponentInChildren<Guest>();
 
         if (guest == null)
@@ -107,19 +87,3 @@ public class GuestSpawner : MonoBehaviour
         guest.Init(exitPoint, recipe);
     }
 }
-
-/* Debug options
- Debug.LogWarning("[Spawner] Duplicate GuestSpawner found, destroying extra instance.");
-Debug.Log("[Spawner] Start called");
-Debug.LogError("[Spawner] No BarQueueManager instance found in scene!");
-Debug.LogError("[Spawner] guestPrefabs is empty! Assign guest prefabs in the Inspector.");
-Debug.LogError("[Spawner] spawnPoint is not assigned! Assign it in the Inspector.");
-Debug.LogError("[Spawner] exitPoint is not assigned! Assign it in the Inspector.");
-Debug.LogError("[Spawner] BarQueueManager.queueSlots is not assigned or empty!");
-Debug.Log($"[Spawner] Filling queue at start with {slotCount} slots.");
-Debug.LogError("[Spawner] No BarQueueManager instance available when trying to spawn.");
-Debug.LogError("[Spawner] guestPrefabs is empty, cannot spawn guest.");
-Debug.LogError("[Spawner] spawnPoint is not assigned, cannot spawn guest.");
-Debug.Log("[Spawner] Spawning guest...");
-Debug.LogError("[Spawner] Guest prefab missing Guest script on root or child!");
-Debug.Log($"[Spawner] Spawned guest '{guest.name}' and initialized exit '{exitPoint.name}'.");*/

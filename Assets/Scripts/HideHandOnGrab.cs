@@ -1,60 +1,29 @@
-/*using UnityEngine;
-using Oculus.Interaction;
-using Oculus.Interaction.HandGrab;
+using UnityEngine;
 
 public class HideHandOnGrab : MonoBehaviour
 {
-    public GameObject handModel;
-    private XRGrabInteractable grabInteractable;
+    public GameObject handVisuals;
+
+    private OVRGrabbable grabbable;
+
     void Awake()
     {
-        grabInteractable = GetComponent<XRGrabInteractable>();
-
-        grabInteractable.selectEntered.AddListener(HideHand);
-        grabInteractable.selectExited.AddListener(ShowHand);
+        grabbable = GetComponent<OVRGrabbable>();
     }
 
-    void HideHand(SelectEnterEventArgs args)
+    void Update()
     {
-        handModel.SetActive(false);
-    }
+        if (grabbable == null || handVisuals == null) return;
 
-    void ShowHand(SelectExitEventArgs args)
-    {
-        handModel.SetActive(true);
+        if (grabbable.isGrabbed)
+        {
+            if (handVisuals.activeSelf)
+                handVisuals.SetActive(false);
+        }
+        else
+        {
+            if (!handVisuals.activeSelf)
+                handVisuals.SetActive(true);
+        }
     }
 }
-
-{
-    private OVRHandGrabInteractable handGrabInteractable;
-    private GameObject handVisuals;
-
-    void Awake()
-    {
-        handGrabInteractable = GetComponent<OVRHandGrabInteractable>();
-        handVisuals = GameObject.Find("HandVisuals");
-    }
-
-    void OnEnable()
-    {
-        handGrabInteractable.GrabBegin += OnGrabBegin;
-        handGrabInteractable.GrabEnd += OnGrabEnd;
-    }
-
-    void OnDisable()
-    {
-        handGrabInteractable.GrabBegin -= OnGrabBegin;
-        handGrabInteractable.GrabEnd -= OnGrabEnd;
-    }
-
-    void OnGrabBegin()
-    {
-        handVisuals.SetActive(false);
-    }
-
-    void OnGrabEnd()
-    {
-        handVisuals.SetActive(true);
-    }
-}*/
- 
