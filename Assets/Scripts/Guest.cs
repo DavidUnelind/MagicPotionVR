@@ -18,6 +18,7 @@ public class Guest : MonoBehaviour
     public Recipe recipe; 
 
     public bool isAtBar => animator != null && animator.GetBool("AtBar");
+    private UnityEngine.AI.NavMeshAgent agent;
 
     public void Init(Transform exit, Recipe newRecipe)
     {
@@ -28,56 +29,40 @@ public class Guest : MonoBehaviour
 
     void Start()
     {
-        Debug.Log($"[Guest] Spawned: {gameObject.name}");
-
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+        agent.speed = speed;
+        agent.angularSpeed = 720f;
+        agent.acceleration = 20f;
 
         if (rb != null)
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
         }
 
-        if (!initialized)
-        {
-            Debug.LogError("[Guest] Init() was never called before Start()!");
-            return;
-        }
-
-        if (BarQueueManager.Instance == null)
-        {
-            Debug.LogError("[Guest] No QueueManager in scene!");
-            return;
-        }
-
         BarQueueManager.Instance.JoinQueue(this);
-        Debug.Log("[Guest] Joined queue");
     }
 
     void Update()
     {
         if (target == null || !isMoving) return;
 
-        Vector3 newPos = Vector3.MoveTowards(
-            transform.position,
-            target.position,
-            Time.deltaTime * speed
-        );
-        transform.position = newPos;
+        agent.SetDestination(target.position);
 
-        Vector3 dir = (target.position - transform.position);
-        dir.y = 0;
-        if (dir.sqrMagnitude > 0.001f)
-            transform.rotation = Quaternion.LookRotation(dir);
+        if (exitPosition != null && Vector3.Distance(transform.position, exitPosition.position) < 6.5f)
+        {
+            animator?.SetBool("Crouch", true);
+        }
 
-        if (exitPosition != null &&
-            Vector3.Distance(transform.position, exitPosition.position) < 0.5f)
+        if (exitPosition != null && Vector3.Distance(transform.position, exitPosition.position) < 0.5f)
         {
             GuestSpawner.Instance.TrySpawnGuest();
             Destroy(gameObject);
             return;
         }
-        if (Vector3.Distance(transform.position, target.position) < 0.1f)
+        if (!agent.pathPending && agent.remainingDistance < 0.2f)
         {
             isMoving = false;
             animator?.SetBool("AtBar", true);
@@ -94,7 +79,6 @@ public class Guest : MonoBehaviour
         queueIndex = index;
         isMoving = true;
 
-        Debug.Log($"{gameObject.name} assigned to slot {queueIndex}");
         animator?.SetBool("AtBar", false);
     }
 
@@ -107,7 +91,6 @@ public class Guest : MonoBehaviour
         BarQueueManager.Instance.LeaveQueue(this);
 
         target = exitPosition;
-        Debug.Log($"{exitPosition.position} is pos");
         isMoving = true;
 
         animator?.SetBool("AtBar", false);

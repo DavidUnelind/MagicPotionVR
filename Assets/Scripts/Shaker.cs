@@ -12,7 +12,7 @@ public class Shaker : MonoBehaviour
 
     private float shakingTime = 0f;
 
-    private float shakingIntensity = 1f;
+    private float shakingIntensity = 0.5f;
 
     public bool isDoneShaking = false;
 
