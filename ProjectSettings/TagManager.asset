@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Guest
   - Ingredients
+  - Cauldron
   layers:
   - Default
   - TransparentFX

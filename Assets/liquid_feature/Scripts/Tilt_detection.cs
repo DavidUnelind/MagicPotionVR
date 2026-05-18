@@ -7,6 +7,7 @@ public class Tilt_detection : MonoBehaviour
     [SerializeField] private Transform pourPoint;
     [SerializeField] private GameObject streamObject;
     [SerializeField] private Wobble bottleLiquid;
+    [SerializeField] private Recipe recipe;
 
     // Detta gör så att variabler syns i inspektorn
     [Header("Tilt Settings")]
@@ -22,9 +23,10 @@ public class Tilt_detection : MonoBehaviour
     {
         if (bottle == null)
             bottle = transform;
-        streamObject = Instantiate(streamObject,pourPoint.position, Quaternion.identity, transform );
+        streamObject = Instantiate(streamObject, pourPoint.position, Quaternion.identity, transform );
         streamObject.transform.localScale = Vector3.one;
         currentStream = streamObject.GetComponent<Stream>();
+        currentStream.Init(recipe);
         streamObject.SetActive(false);
     }
 
