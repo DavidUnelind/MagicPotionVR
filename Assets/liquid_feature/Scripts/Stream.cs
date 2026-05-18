@@ -1,16 +1,24 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 
 public class Stream : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particles;    
+    [SerializeField] private ParticleSystem particles;
+    private Recipe recipe;
+    [SerializeField] private string color;
+
     private LineRenderer lineRenderer = null;
 
     private Vector3 targetPosition = Vector3.zero;
     public float widthMultiplier;
     private float scaleFactor;
 
+    public void Init(Recipe newRecipe)
+    {
+        recipe = newRecipe;
+    }
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -54,6 +62,12 @@ public class Stream : MonoBehaviour
         float value = 100.0f * scaleFactor;
         Physics.Raycast(ray, out hit, value);
         Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(value);
+
+        if (hit.collider && hit.collider.CompareTag("Cauldron"))
+        {
+            Debug.Log("Hit the cauldron!");
+            recipe.addIngredient(color);
+        }
 
         return endPoint;
     }

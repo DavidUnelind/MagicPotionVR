@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class HideHandOnGrab : MonoBehaviour
 {
+    [Tooltip("Assign the hand visuals root to hide when this object is grabbed.")]
     public GameObject handVisuals;
 
     private OVRGrabbable grabbable;
+    private bool lastGrabState;
 
     void Awake()
     {
@@ -13,17 +15,35 @@ public class HideHandOnGrab : MonoBehaviour
 
     void Update()
     {
-        if (grabbable == null || handVisuals == null) return;
+        if (grabbable == null) return;
 
-        if (grabbable.isGrabbed)
+        bool isGrabbed = grabbable.isGrabbed;
+        if (isGrabbed == lastGrabState) return;
+        lastGrabState = isGrabbed;
+
+        if (handVisuals != null)
         {
-            if (handVisuals.activeSelf)
-                handVisuals.SetActive(false);
+            handVisuals.SetActive(!isGrabbed);
+            return;
         }
-        else
+
+        if (grabbable.grabbedBy != null)
         {
-            if (!handVisuals.activeSelf)
-                handVisuals.SetActive(true);
+            ToggleRenderers(grabbable.grabbedBy.gameObject, !isGrabbed);
+        }
+    }
+
+    private void ToggleRenderers(GameObject root, bool visible)
+    {
+        if (root == null) return;
+
+        Renderer[] renderers = root.GetComponentsInChildren<Renderer>(true);
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer != null)
+            {
+                renderer.enabled = visible;
+            }
         }
     }
 }
