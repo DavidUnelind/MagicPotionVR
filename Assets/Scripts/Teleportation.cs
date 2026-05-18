@@ -8,23 +8,17 @@ public class Teleportation : MonoBehaviour
     private bool isTeleporting = false;
     public ParticleSystem teleportEffect;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        startPosition = transform.position;
         rigidBody = GetComponent<Rigidbody>();
+        startPosition = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isTeleporting) return;
 
-        //float distance = Vector3.Distance(startPosition, transform.position);
-
-        float distanceY = Mathf.Abs(startPosition.y - transform.position.y);
-
-        if (distanceY >= maxDistance)
+        if (transform.position.y < maxDistance)
         {
             StartCoroutine(Teleport());
         }
