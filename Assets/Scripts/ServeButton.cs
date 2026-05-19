@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ServeButton : MonoBehaviour
 {
+    [SerializeField] private AudioClip buttonSound;
 
     public bool servedGuest; 
 
@@ -15,6 +16,7 @@ public class ServeButton : MonoBehaviour
 
     public void PressButton()
     {
+        SoundManager.instance.PlaySound(buttonSound);
         if (shaker.isDoneShaking)
         {
             servedGuest = true;

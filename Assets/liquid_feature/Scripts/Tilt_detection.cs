@@ -8,6 +8,8 @@ public class Tilt_detection : MonoBehaviour
     [SerializeField] private GameObject streamObject;
     [SerializeField] private Wobble bottleLiquid;
     [SerializeField] private Recipe recipe;
+    [SerializeField] private AudioSource pourAudio;
+
 
     // Detta gör så att variabler syns i inspektorn
     [Header("Tilt Settings")]
@@ -51,6 +53,11 @@ public class Tilt_detection : MonoBehaviour
 
     private void StartPour()
     {
+        if (!pourAudio.isPlaying)
+        {
+            pourAudio.Play();
+        }
+
         Debug.Log("POURING STARTED");
         streamObject.SetActive(true);
         currentStream.Begin();
@@ -59,6 +66,11 @@ public class Tilt_detection : MonoBehaviour
 
     private void EndPour()
     {
+        if (pourAudio.isPlaying)
+        {
+            pourAudio.Stop();
+        }
+        
         Debug.Log("POURING STOPPED");
         //streamObject = null;
         streamObject.SetActive(false);

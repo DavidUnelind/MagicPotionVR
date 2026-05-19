@@ -7,6 +7,7 @@ public class Shaker : MonoBehaviour
     private Rigidbody shaker;
 
     [SerializeField] public Slider progressBar;
+    [SerializeField] public AudioClip shakerSound;
 
     public GameObject canvas;
 
