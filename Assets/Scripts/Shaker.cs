@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Oculus.Interaction;
+using UnityEngine;
+
+
+
 
 public class Shaker : MonoBehaviour
 {
     private Rigidbody shaker;
 
     [SerializeField] public Slider progressBar;
+    [SerializeField] public GameObject centerPoint;
 
     public GameObject canvas;
 
@@ -17,6 +22,11 @@ public class Shaker : MonoBehaviour
     public bool isDoneShaking = false;
 
     private Vector3 lastPos;
+    private bool touchingCauldron = false;
+    public Recipe recipe;
+   
+
+    float distance;
 
     void Start()
     {
@@ -33,10 +43,16 @@ public class Shaker : MonoBehaviour
         progressBar.maxValue = 1f;
 
         progressBar.value = 0f;
+
+         
     }
+
+   
 
     void Update()
     {
+        distance = Vector3.Distance(shaker.transform.position, centerPoint.transform.position);
+        if (distance > 0.2f) return;
         float speed =
             (transform.position - lastPos).magnitude / Time.deltaTime;
 
@@ -71,4 +87,8 @@ public class Shaker : MonoBehaviour
 
         canvas.SetActive(false);
     }
+
+
+    
+
 }

@@ -11,6 +11,7 @@ public class Recipe : MonoBehaviour
     public GameObject strength; 
     public Transform playerCamera;
     private int rand;
+    public bool recipeDone = false;
     private Dictionary<string, bool> ingredients = new Dictionary<string, bool>();
     void Start()
     {
@@ -70,6 +71,7 @@ public class Recipe : MonoBehaviour
         luck.SetActive(false);
         strength.SetActive(false);
         ingredients.Clear();
+        recipeDone = false;
     }
 
     public void addIngredient(string ingredient)
@@ -84,7 +86,7 @@ public class Recipe : MonoBehaviour
 
         if (ingredients.ContainsValue(false) == false)
         {
-            //DONE
+            recipeDone = true;
         }
     }
 
