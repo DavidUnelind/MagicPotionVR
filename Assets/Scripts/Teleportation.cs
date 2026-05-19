@@ -34,10 +34,7 @@ public class Teleportation : MonoBehaviour
         Obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
         GetComponent<Renderer>().enabled = false;
-        transform.position = startPosition;
-        transform.rotation = Quaternion.identity;
-        rigidBody.linearVelocity = Vector3.zero;
-        rigidBody.angularVelocity = Vector3.zero;
+        MovePosition();
 
         yield return new WaitForSeconds(1.0f);
 
@@ -45,5 +42,13 @@ public class Teleportation : MonoBehaviour
         GetComponent<Renderer>().enabled = true;
 
         isTeleporting = false;
+    }
+
+    public void MovePosition()
+    {
+        transform.position = startPosition;
+        transform.rotation = Quaternion.identity;
+        rigidBody.linearVelocity = Vector3.zero;
+        rigidBody.angularVelocity = Vector3.zero;
     }
 }

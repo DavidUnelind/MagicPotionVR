@@ -10,45 +10,47 @@ public class Recipe : MonoBehaviour
     public GameObject luck; 
     public GameObject strength; 
     public Transform playerCamera;
-    private List<string> ingredients = new List<string>();
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private int rand;
+    private Dictionary<string, bool> ingredients = new Dictionary<string, bool>();
     void Start()
     {
         guestDone(); 
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 direction = playerCamera.position - transform.position;
         direction.y = 0;
         transform.rotation = Quaternion.LookRotation(-direction);
-        //transform.LookAt(transform.position + playerCamera.rotation * Vector3.forward, playerCamera.rotation * Vector3.up);
     }
 
     public void newGuest()
     {
+        guestDone();
         canvas.SetActive(true);
-        int rand = Random.Range(0, 3); 
+        rand = Random.Range(0, 3); 
 
         switch (rand)
         {
             case 0:
                 love.SetActive(true);
-                ingredients.Add("Green");
-                ingredients.Add("Pink");
+                ingredients.Add("Pink", false);
+                ingredients.Add("Green", false);
+                ingredients.Add("Heart", false);
                 break; 
 
             case 1:
                 luck.SetActive(true);
-                ingredients.Add("Green");
-                ingredients.Add("Orange");
+                ingredients.Add("Orange", false);
+                ingredients.Add("Green", false);
+                ingredients.Add("Eye", false);
                 break;
 
             case 2:
                 strength.SetActive(true);
-                ingredients.Add("Red");
-                ingredients.Add("Purple");
+                ingredients.Add("Red", false);
+                ingredients.Add("Purple", false);
+                ingredients.Add("Eye", false);
                 break;
 
             default:
@@ -58,21 +60,56 @@ public class Recipe : MonoBehaviour
 
     public void guestDone()
     {
+        for (int i = 0; i < 3; i++)
+        {
+            changeVisibleLines(i, false);
+        }
+        
         canvas.SetActive(false);
         love.SetActive(false);
         luck.SetActive(false);
         strength.SetActive(false);
+        ingredients.Clear();
     }
 
     public void addIngredient(string ingredient)
     {
-        if (ingredients.Contains(ingredient))
+        if (ingredients.ContainsKey(ingredient))
         {
-            ingredients.Remove(ingredient);
+            ingredients[ingredient] = true;
+            List<string> keys = new List<string>(ingredients.Keys);
+            int index = keys.IndexOf(ingredient);
+            changeVisibleLines(index, true);
         }
 
-        if (ingredients.Count == 0)
+        if (ingredients.ContainsValue(false) == false)
         {
+            //DONE
         }
+    }
+
+    private void changeVisibleLines(int index, bool value)
+    {
+        GameObject obj = null;
+        switch (rand)
+        {
+            case 0:
+                obj = love;
+                break; 
+
+            case 1:
+                obj = luck;
+                break;
+
+            case 2:
+                obj = strength;
+                break;
+
+            default:
+                break;
+        }
+        GameObject redLine = obj.transform.GetChild(index + 3).gameObject;
+        UnityEngine.Debug.Log("Changing line " + index + " to " + value);
+        redLine.SetActive(value);
     }
 }
