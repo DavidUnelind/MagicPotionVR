@@ -7,6 +7,7 @@ public class BarQueueManager : MonoBehaviour
 
     public Transform[] queueSlots;
     private List<Guest> guests = new List<Guest>();
+    private bool gameStopped = false;
 
     void Awake()
     {
@@ -32,6 +33,7 @@ public class BarQueueManager : MonoBehaviour
 
     public void JoinQueue(Guest guest)
     {
+        if (guest == null) return;
         Debug.Log($"[Queue] JoinQueue: {guest.name}");
 
         if (guests.Contains(guest))
@@ -45,12 +47,14 @@ public class BarQueueManager : MonoBehaviour
     }
     public void LeaveQueue(Guest guest)
     {
+        if (guest == null) return;
         guests.Remove(guest);
         UpdateQueue();
     }
 
     public void UpdateQueue()
     {
+        if (gameStopped) return;
         Debug.Log("[Queue] UpdateQueue called");
 
         if (queueSlots == null || queueSlots.Length == 0)
@@ -74,5 +78,25 @@ public class BarQueueManager : MonoBehaviour
         if (guests.Count > 0)
             return guests[0];
         return null;
+    }
+
+    public void StopGame() {
+        if (gameStopped) return;
+        gameStopped = true;
+
+        for (int i = guests.Count - 1; i >= 0; i--)
+        {
+            Guest guest = guests[i];
+            if (guest != null)
+            {
+                guest.Kill();
+            }
+        }
+
+        guests.Clear();
+    }
+
+    public void RestartGame() {
+        gameStopped = false;
     }
 }

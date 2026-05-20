@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d680b8cc0be3ba469a1088d94256cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Guest
-  speed: 1
+  speed: 1.5
   recipe: {fileID: 0}
 --- !u!114 &4712632729133817383
 MonoBehaviour:

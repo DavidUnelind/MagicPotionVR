@@ -104,4 +104,10 @@ public class Guest : MonoBehaviour
     {
         recipe.newGuest();
     }
+
+    public void Kill()
+    {
+        if (this == null) return;
+        Destroy(gameObject);
+    }
 }

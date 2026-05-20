@@ -26,7 +26,7 @@ public class GuestSpawner : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public void StartGame()
     {
         if (BarQueueManager.Instance == null 
             || guestPrefabs == null 
