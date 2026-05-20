@@ -11,7 +11,8 @@ public class Guest : MonoBehaviour
     private Transform target;
     private bool served = false;
     private bool isMoving = false;  
-    private int queueIndex = 0;
+    private int queueIndex = 3;
+    private bool hasBeenFirstInQueue = false;
 
     private bool initialized = false;
 
@@ -66,9 +67,11 @@ public class Guest : MonoBehaviour
         {
             isMoving = false;
             animator?.SetBool("AtBar", true);
-            if (queueIndex == 0)
+
+            if (queueIndex == 0 && recipe != null && !hasBeenFirstInQueue)
             {
                 recipe.newGuest();
+                hasBeenFirstInQueue = true;
             }
         }
     }
@@ -94,5 +97,11 @@ public class Guest : MonoBehaviour
         isMoving = true;
 
         animator?.SetBool("AtBar", false);
+    }
+
+
+    public void UpdateRecipe()
+    {
+        recipe.newGuest();
     }
 }

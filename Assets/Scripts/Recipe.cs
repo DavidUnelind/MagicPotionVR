@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System.Diagnostics;
 using System.Collections.Generic;
 
 public class Recipe : MonoBehaviour
@@ -76,6 +75,7 @@ public class Recipe : MonoBehaviour
 
     public void addIngredient(string ingredient)
     {
+        Debug.Log("TJO: " + ingredients);
         if (ingredients.ContainsKey(ingredient))
         {
             ingredients[ingredient] = true;
