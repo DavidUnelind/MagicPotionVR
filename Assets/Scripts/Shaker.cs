@@ -52,7 +52,7 @@ public class Shaker : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(shaker.transform.position, centerPoint.transform.position);
-        if (distance > 0.2f) return;
+        if (distance > 0.2f || !recipe.recipeDone) return;
         float speed =
             (transform.position - lastPos).magnitude / Time.deltaTime;
 
