@@ -110,7 +110,7 @@ public class Recipe : MonoBehaviour
             default:
                 break;
         }
-        GameObject redLine = obj.transform.GetChild(index + 3).gameObject;
+        GameObject redLine = obj.transform.GetChild(index + 4).gameObject;
         UnityEngine.Debug.Log("Changing line " + index + " to " + value);
         redLine.SetActive(value);
     }
