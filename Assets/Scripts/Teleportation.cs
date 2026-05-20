@@ -22,7 +22,6 @@ public class Teleportation : MonoBehaviour
     void Update()
     {
         if (isTeleporting) {
-            if (wobble != null) wobble.fillLevel = 0.2f;
             return;
         }
         
@@ -38,11 +37,12 @@ public class Teleportation : MonoBehaviour
         
     
         yield return new WaitForSeconds(0.1f);
-        
+
         var Obj = Instantiate(teleportEffect, transform.position, Quaternion.identity);
         Obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
         GetComponent<Renderer>().enabled = false;
+        if (wobble != null) wobble.SetFillLevel(0.2f);
         MovePosition();
 
         yield return new WaitForSeconds(1.0f);
@@ -55,7 +55,6 @@ public class Teleportation : MonoBehaviour
 
     public void MovePosition()
     {
-        
         transform.position = startPosition;
         transform.rotation = startRotation;
         rigidBody.linearVelocity = Vector3.zero;

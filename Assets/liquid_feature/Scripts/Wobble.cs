@@ -80,6 +80,8 @@ public class Wobble : MonoBehaviour
         } 
     }
 
-
-
+    public void SetFillLevel(float level)
+    {
+        rend.material.SetFloat("_Fill", level);
+    }
 }

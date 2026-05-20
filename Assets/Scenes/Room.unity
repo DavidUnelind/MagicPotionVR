@@ -3458,8 +3458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shaker
   progressBar: {fileID: 1893690630}
-  centerPoint: {fileID: 2011335569}
   shakerSound: {fileID: 0}
+  centerPoint: {fileID: 2011335569}
   canvas: {fileID: 796467864}
   isDoneShaking: 0
   recipe: {fileID: 1255564022}
@@ -7021,7 +7021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleportation
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  wobble: {fileID: 0}
+  wobble: {fileID: 2057604165}
 --- !u!114 &209587774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12535,7 +12535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleportation
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  wobble: {fileID: 0}
+  wobble: {fileID: 1269444375}
 --- !u!114 &461185345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19922,7 +19922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleportation
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  wobble: {fileID: 0}
+  wobble: {fileID: 1865175374}
 --- !u!114 &735604643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33776,7 +33776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleportation
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  wobble: {fileID: 0}
+  wobble: {fileID: 728889313}
 --- !u!114 &1088366357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37240,7 +37240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleportation
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  wobble: {fileID: 0}
+  wobble: {fileID: 1521249252}
 --- !u!114 &1237688313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49772,7 +49772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleportation
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  wobble: {fileID: 0}
+  wobble: {fileID: 64404013}
 --- !u!114 &1728981952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54008,7 +54008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleportation
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  wobble: {fileID: 0}
+  wobble: {fileID: 1129415001}
 --- !u!114 &1933836939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54840,7 +54840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleportation
   maxDistance: 0.6
   teleportEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  wobble: {fileID: 0}
+  wobble: {fileID: 461657327}
 --- !u!114 &1959810326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59028,9 +59028,4 @@ SceneRoots:
   - {fileID: 1255564021}
   - {fileID: 1841774812}
   - {fileID: 942558729}
-  - {fileID: 933634053}
-  - {fileID: 2035969324}
-  - {fileID: 578703357}
-  - {fileID: 419577235}
-  - {fileID: 492034736}
   - {fileID: 690138001}
