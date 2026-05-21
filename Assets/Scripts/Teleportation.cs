@@ -11,7 +11,7 @@ public class Teleportation : MonoBehaviour
     public ParticleSystem teleportEffect;
 
     public Wobble wobble;
-    public AudioSource eyeAudio;
+    public AudioSource teleportAudio;
 
     void Start()
     {
@@ -38,9 +38,9 @@ public class Teleportation : MonoBehaviour
         
         yield return new WaitForSeconds(0.2f);
 
-        if (eyeAudio != null)
+        if (teleportAudio != null)
         {
-            eyeAudio.Play();
+            teleportAudio.Play();
         }
 
         var Obj = Instantiate(teleportEffect, transform.position, Quaternion.identity);

@@ -13,6 +13,8 @@ public class GameLoop : MonoBehaviour
     public GameObject recipeCanvas;
     public GameObject progressBar;
     public AudioSource clockTickingSound;
+    public AudioSource gameOverSound;
+    public AudioSource pointsSound;
     public MenuManager menu;
     private bool started = false;
     private float remainingTime; 
@@ -33,7 +35,7 @@ public class GameLoop : MonoBehaviour
         {
             remainingTime -= Time.deltaTime;  
             textPro.text = "Time remaining: " + Mathf.RoundToInt(remainingTime) + "\nCustomers served: " + points;  
-            if (remainingTime < 25)
+            if (remainingTime < 20f)
             {
                 if (!clockTickingSound.isPlaying)
                 {
@@ -51,6 +53,8 @@ public class GameLoop : MonoBehaviour
             {
                 clockTickingSound.Stop();
             }
+            gameOverSound.time = 1f;
+            gameOverSound.Play();
             StopGame();
         }
 
@@ -58,6 +62,7 @@ public class GameLoop : MonoBehaviour
         {
             points += 1; 
             button.servedGuest = false; 
+            pointsSound.Play();
         }
     }
 
@@ -70,7 +75,7 @@ public class GameLoop : MonoBehaviour
         menu.ExitMenu();
         barQueueManager = BarQueueManager.Instance;
         barQueueManager?.RestartGame();
-        remainingTime = 35f;
+        remainingTime = 120f;
         points = 0;
         cauldron.SetActive(true);
         stick.SetActive(true);

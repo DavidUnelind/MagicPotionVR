@@ -16,6 +16,9 @@ public class DoorController : MonoBehaviour
 
     private bool isOpen = false;
 
+    public AudioSource doorOpeningSound; 
+    public AudioSource doorClosingSound; 
+
     void Start()
     {
         closedRotation = transform.rotation;
@@ -27,7 +30,18 @@ public class DoorController : MonoBehaviour
 
     void Update()
     {
+        bool temp = isOpen; 
+
         CheckForGuests();
+
+        if (doorOpeningSound != null && temp == false && isOpen == true)
+        {
+            doorOpeningSound.Play(); 
+        } else if (doorClosingSound != null && temp == true && isOpen == false)
+        {
+            doorClosingSound.time = 4f;
+            doorClosingSound.Play();
+        }
 
         Quaternion targetRotation = isOpen ? openRotation : closedRotation;
 
