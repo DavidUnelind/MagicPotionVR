@@ -9,61 +9,63 @@ using UnityEngine;
 public class Shaker : MonoBehaviour
 {
     private Rigidbody shaker;
-
-    [SerializeField] public Slider progressBar;
-    [SerializeField] public AudioClip shakerSound;
-    [SerializeField] public GameObject centerPoint;
-
+    public Slider progressBar;
+    public AudioSource stirringSound;
+    public GameObject centerPoint;
     public GameObject canvas;
-
     private float shakingTime = 0f;
-
     private float shakingIntensity = 0.5f;
-
     public bool isDoneShaking = false;
-
     private Vector3 lastPos;
     private bool touchingCauldron = false;
     public Recipe recipe;
-   
-
     float distance;
 
     void Start()
     {
         shaker = GetComponent<Rigidbody>();
-
         shaker.collisionDetectionMode = CollisionDetectionMode.Continuous;
-
         lastPos = transform.position;
-
         canvas.SetActive(false);
 
         progressBar.minValue = 0f;
-
         progressBar.maxValue = 1f;
-
         progressBar.value = 0f;
-
-         
     }
-
-   
 
     void Update()
     {
         distance = Vector3.Distance(shaker.transform.position, centerPoint.transform.position);
-        if (distance > 0.2f || !recipe.recipeDone) return;
-        float speed =
-            (transform.position - lastPos).magnitude / Time.deltaTime;
+        if (distance > 0.2f) {
+            if (stirringSound.isPlaying)
+            {
+                stirringSound.Stop();
+            }
+            return;
+        }
+        float speed = (transform.position - lastPos).magnitude / Time.deltaTime;
 
         lastPos = transform.position;
 
         if (speed > shakingIntensity)
         {
-            canvas.SetActive(true);
-
-            shakingTime += Time.deltaTime;
+            if (recipe.recipeDone)
+            {
+                canvas.SetActive(true);
+                shakingTime += Time.deltaTime;
+            }
+            
+            if (!stirringSound.isPlaying)
+            {
+                stirringSound.Play();
+            }
+        }
+        else
+        {
+            if (stirringSound.isPlaying)
+            {
+                stirringSound.Stop();
+            }
         }
 
         shakingTime = Mathf.Clamp(shakingTime, 0f, 2f);
@@ -88,8 +90,4 @@ public class Shaker : MonoBehaviour
 
         canvas.SetActive(false);
     }
-
-
-    
-
 }
