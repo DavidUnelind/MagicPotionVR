@@ -8,6 +8,7 @@ public class Recipe : MonoBehaviour
     public GameObject love; 
     public GameObject luck; 
     public GameObject strength; 
+    public GameObject health; 
     public Transform playerCamera;
     private int rand;
     public bool recipeDone = false;
@@ -28,14 +29,14 @@ public class Recipe : MonoBehaviour
     {
         guestDone();
         canvas.SetActive(true);
-        rand = Random.Range(0, 3); 
+        rand = Random.Range(0, 4); 
 
         switch (rand)
         {
             case 0:
                 love.SetActive(true);
-                ingredients.Add("Pink", false);
-                ingredients.Add("Green", false);
+                ingredients.Add("Purple", false);
+                ingredients.Add("Red", false);
                 ingredients.Add("Heart", false);
                 break; 
 
@@ -48,9 +49,16 @@ public class Recipe : MonoBehaviour
 
             case 2:
                 strength.SetActive(true);
-                ingredients.Add("Red", false);
-                ingredients.Add("Purple", false);
+                ingredients.Add("Black", false);
+                ingredients.Add("Orange", false);
                 ingredients.Add("Eye", false);
+                break;
+
+            case 3:
+                health.SetActive(true);
+                ingredients.Add("Yellow", false);
+                ingredients.Add("Blue", false);
+                ingredients.Add("Heart", false);
                 break;
 
             default:
@@ -69,6 +77,7 @@ public class Recipe : MonoBehaviour
         love.SetActive(false);
         luck.SetActive(false);
         strength.SetActive(false);
+        health.SetActive(false);
         ingredients.Clear();
         recipeDone = false;
     }
@@ -82,11 +91,11 @@ public class Recipe : MonoBehaviour
             List<string> keys = new List<string>(ingredients.Keys);
             int index = keys.IndexOf(ingredient);
             changeVisibleLines(index, true);
-        }
 
-        if (ingredients.ContainsValue(false) == false)
-        {
-            recipeDone = true;
+            if (ingredients.ContainsValue(false) == false)
+            {
+                recipeDone = true;
+            }
         }
     }
 
@@ -105,6 +114,10 @@ public class Recipe : MonoBehaviour
 
             case 2:
                 obj = strength;
+                break;
+
+            case 3:
+                obj = health;
                 break;
 
             default:

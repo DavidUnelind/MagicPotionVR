@@ -66,11 +66,11 @@ public class Shaker : MonoBehaviour
             shakingTime += Time.deltaTime;
         }
 
-        shakingTime = Mathf.Clamp(shakingTime, 0f, 3f);
+        shakingTime = Mathf.Clamp(shakingTime, 0f, 2f);
 
-        progressBar.value = shakingTime / 3f;
+        progressBar.value = shakingTime / 2f;
 
-        if (shakingTime >= 3f)
+        if (shakingTime >= 2f)
         {
             isDoneShaking = true;
 

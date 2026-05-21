@@ -9,14 +9,18 @@ public class GameLoop : MonoBehaviour
     public TextMeshProUGUI textPro; 
     public TextMeshProUGUI textEndPro;
     public GameObject pointsCanvas;
-    public GameObject startCanvas;
-    public GameObject endCanvas;
     public GuestSpawner guestSpawner;
     public BarQueueManager barQueueManager;
     public GameObject recipeCanvas;
+    public GameObject progressBar;
+
+    public MenuManager menu;
     private bool started = false;
 
     private float remainingTime; 
+
+    public GameObject cauldron;
+    public GameObject stick;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,21 +55,25 @@ public class GameLoop : MonoBehaviour
         guestSpawner = GuestSpawner.Instance;
         guestSpawner.StartGame();
         pointsCanvas.SetActive(true);
-        startCanvas.SetActive(false);
-        endCanvas.SetActive(false);
+        menu.ExitMenu();
         barQueueManager = BarQueueManager.Instance;
         barQueueManager?.RestartGame();
         remainingTime = 120f;
         points = 0;
+        cauldron.SetActive(true);
+        stick.SetActive(true);
     }
 
     private void StopGame() {
+        cauldron.SetActive(false);
+        stick.SetActive(false);
         started = false;
-        endCanvas.SetActive(true);
         pointsCanvas.SetActive(false);
+        menu.GameOverMenu();
         barQueueManager = BarQueueManager.Instance;
         barQueueManager?.StopGame();
         textEndPro.text = "Game over! \n Customers served: " + points;
         recipeCanvas.SetActive(false);
+        progressBar.SetActive(false);
     }
 }
