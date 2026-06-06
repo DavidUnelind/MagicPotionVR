@@ -25,7 +25,7 @@ The game was created by **David Unelind, Moa Gassilewski, Klara Högberg, Johann
 
 ## Installing and Playing the APK on Meta Quest 3
 
-1. Build the APK from Unity or use the provided APK file.
+1. Build the APK from Unity or use the provided APK file: [Download MagicPotion APK](https://drive.google.com/file/d/1jELs-KM_Mz5MobKC2hA19gew4zRm3SFM/view?usp=sharing).
 2. Open SideQuest on your PC.
 3. Connect your Meta Quest 3 headset to the PC via USB.
 4. Use SideQuest to transfer the APK to the headset.
